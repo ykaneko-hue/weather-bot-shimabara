@@ -1,20 +1,20 @@
-name: Daily 4 Cities Weather Report
+name: 4都市の天気予報（毎日更新）
 
 on:
   schedule:
-    # 日本時間 11:30 (UTC 02:30) に実行
-    - cron: '30 2 * * *'
-  workflow_dispatch: # 手動実行ボタン
+    # 日本時間 12:00 (UTC 03:00) に実行
+    - cron: '0 3 * * *'
+  workflow_dispatch: # 手動実行ボタン（今すぐ試す用）
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: '3.9'
 
@@ -23,5 +23,5 @@ jobs:
           pip install selenium requests
 
       - name: Run script
-        # ここで実行するファイル名を 4city_weather_bot.py に指定します
+        # 一番外側に作ったファイル名と一致させます
         run: python 4city_weather_bot.py
